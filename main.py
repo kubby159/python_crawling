@@ -1,14 +1,15 @@
-import requests
+# 01234
+s = 'apple'
 
+print(s.find('e'))
 
-res = requests.get('https://www.naver.com/')
-print(res.text)
+#array
+arr = s.split('p')
+print(arr)
 
-
-###
-# GET : 요청, 값 가져오는 역할
-# POST : 생성, 액션,
-# PUT : 수정, 덮어쓰기
-# delete : 삭제
-
-
+#position
+#pos
+s = '제 생일은 9월 입니다.'
+pos = s.find("생일은 ")
+pos+=4
+print(s[pos:pos+1])
