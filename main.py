@@ -1,24 +1,9 @@
-# 01234
-s = 'apple'
+import requests as req
 
-print(s.find('e'))
+res = req.get('https://finance.naver.com/marketindex/?tabSel=exchange#tab_section')
 
-#array
-arr = s.split('p')
-print(arr)
-
-#position
-#pos
-s = '제 생일은 10월 입니다.'
-# pos = s.find("생일은 ")
-# pos+=4
-# print(s[pos:pos+1])
+html = res.text
 
 
-arr = s.split('생일은 ')
-s = arr[1]
-print(s.split('월')[0])
-
-s = '제 생일은 10월 입니다.'
-bd = s.split('생일은 ')[1].split('월')[0]
-print(bd)
+result = html.split('<span class="value">')[1].split('</span>')[0]
+print(result)
