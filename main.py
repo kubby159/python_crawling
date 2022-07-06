@@ -26,5 +26,21 @@ for td in tds:
 
     
 
-for idx in range(0,len(names)):
-    print(f'{names[idx]} : {prices[idx]}')
+# for idx in range(0,len(names)):
+#     print(f'{names[idx]} : {prices[idx]}')
+
+
+names = []
+
+for td in soup.select('td.tit'):
+    names.append(td.get_text(strip=True))
+
+
+prices = []
+
+for td in soup.select('td.sale'):
+    prices.append(td.get_text(strip=True))
+
+
+print(names)
+print(prices)
