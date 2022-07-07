@@ -28,7 +28,7 @@ for td in tds:
 
 # for idx in range(0,len(names)):
 #     print(f'{names[idx]} : {prices[idx]}')
-
+#
 
 names = []
 
