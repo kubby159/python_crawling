@@ -4,8 +4,8 @@ import requests as req
 
 #1. url를 통해 html 을 가져온다.
 
-url = 'https://search.shopping.naver.com/search/all?query=%EC%95%84%EC%9D%B4%ED%8F%B0%20%EC%BC%80%EC%97%90%EC%8A%A4&cat_id=&frm=NVSHATC'
-res = req.get(url)
+url = 'https://www.11st.co.kr/browsing/BestSeller.tmall?method=getBestSellerMain&xfrom=main^gnb'
+res = req.get(url,headers={"User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36"})
 
 #2. 가져온 url을 이용해서  text 불러오기
 #print(res.text)
@@ -13,9 +13,8 @@ res = req.get(url)
 soup = BS(res.text,'html.parser')
 
 #3. selector 이용해서 특정 부분의 데이터를 가져오기.
-arr = soup.select('ul.list_basis div>a:first-child[title]')
+# list comprehension
+
+arr = soup.select('div.pname p')
 for a in arr:
     print(a.get_text(strip=True))
-
-
-
