@@ -1,20 +1,16 @@
+from locale import resetlocale
 from bs4 import BeautifulSoup as BS
 import requests as req
 
 
-#1. url를 통해 html 을 가져온다.
+url = 'https://finance.naver.com/sise/lastsearch2.naver'
 
-url = 'https://www.11st.co.kr/browsing/BestSeller.tmall?method=getBestSellerMain&xfrom=main^gnb'
-res = req.get(url,headers={"User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36"})
+res = req.get(url)
+soup = BS(res.text, 'html.parser')
+stocks =[stock.get_text(strip=True) for stock in soup.select('a.tltle')]
+stock_price = [price.get_text(strip=True) for price in soup.select('tr td.number:nth-child(4)')]
+stock_ratio = [price.get_text(strip=True) for price in soup.select('tr td.number:nth-child(6)')]
+print(stock_price)
+for idx in range(len(stocks)):
+    print(f'{stocks[idx]} : {stock_price[idx]} {stock_ratio[idx]}')
 
-#2. 가져온 url을 이용해서  text 불러오기
-#print(res.text)
-
-soup = BS(res.text,'html.parser')
-
-#3. selector 이용해서 특정 부분의 데이터를 가져오기.
-# list comprehension
-
-arr = soup.select('div.pname p')
-for a in arr:
-    print(a.get_text(strip=True))
