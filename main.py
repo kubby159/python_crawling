@@ -1,15 +1,8 @@
-from bs4 import BeautifulSoup as BS
 import requests as req
-from soupsieve import select
 
 
-url = 'https://finance.yahoo.com/most-active'
-res = req.get(url)
-soup = BS(res.text, 'html.parser')
+res = req.get('https://webhook.site/a36713b2-b32b-4e00-8057-cae35ae3cf2d?name=hi',headers={
+    "User-Agent":  "fastcampus/B1"
 
-
-for tr in soup.select('table tbody tr'):
-    title = tr.select('td:first-child  a')[0].get_text(strip=True)
-    price = tr.select('td:nth-child(3) fin-streamer')[0].get_text(strip=True)
-    change = tr.select('td:nth-child(5) span')[0].get_text(strip=True)
-    print(f'{title} : {price}  {change}')
+})
+print(res)
